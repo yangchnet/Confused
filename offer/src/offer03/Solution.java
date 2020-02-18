@@ -1,3 +1,5 @@
+package offer03;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +23,4 @@ public class Solution {
         return -1;
     }
 
-    public static void main(String[] args) {
-        int[] data = {2,3, 1, 0, 2, 5, 3};
-        Solution s = new Solution(data);
-        System.out.println(s.findRepeatNumber(data));
-    }
 }
