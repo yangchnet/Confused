@@ -1,42 +1,37 @@
 package offer12;
 
 public class RouteSearch {
-
+    boolean found = false;
     public boolean exist(char[][] board, String word) {
         if (board.length == 0) return false;
         boolean[][] visited = new boolean[board.length][board[0].length];
-        boolean found = false;
-
+        if(board.length*board[0].length < word.length()) return false;  //剪枝，总长度小于模式串长度
         for(int row = 0; row < board.length; row++){
             for(int column = 0; column < board[0].length; column++){
+                if(found) return found;  //在前面的搜索中已经找到一个，直接返回
+                found = false;
                 visited = new boolean[board.length][board[0].length];  // 更新visited矩阵
                 if (word.charAt(0) == board[row][column]) { //当前字符成功匹配
                     if(word.length() == 1){  //只有一个字符
                         found = true;   //找到了
+                        return found;
                     }
                     //当前字符与第一个字符相同，从此处开始搜索
                     //内部需要回溯，否则可能漏掉正确解
                     visited[row][column] = true;
-                    int j = 1, r = row, c = column;
-                    if(j == word.length()){  //如果已经匹配的长度等于字符串长度
-                        return found;
-                    }
+                    int j = 1;
                     //朝上下左右四个方向搜索
-                    if ((r - 1) >= 0 && board[r - 1][c] == word.charAt(j) && !visited[r - 1][c]) {  //上
-                        found = route(board, word, visited, r - 1, c, j + 1);
-                        if(found) return found;
+                    if ((row - 1) >= 0 && board[row - 1][column] == word.charAt(j) && !visited[row - 1][column]) {  //上
+                        route(board, word, visited, row - 1, column, j + 1);
                     }
-                    if ((r + 1) < board.length && board[r + 1][c] == word.charAt(j) && !visited[r + 1][c]) { //下
-                        found = route(board, word, visited, r + 1, c, j + 1);
-                        if(found) return found;
+                    if ((row + 1) < board.length && board[row + 1][column] == word.charAt(j) && !visited[row + 1][column]) { //下
+                        route(board, word, visited, row + 1, column, j + 1);
                     }
-                    if ((c - 1) >= 0 && board[r][c - 1] == word.charAt(j) && !visited[r][c - 1]) {  //左
-                        found = route(board, word, visited, r, c - 1, j + 1);
-                        if(found) return found;
+                    if ((column - 1) >= 0 && board[row][column - 1] == word.charAt(j) && !visited[row][column - 1]) {  //左
+                        route(board, word, visited, row, column - 1, j + 1);
                     }
-                    if ((c + 1) < board[0].length && board[r][c + 1] == word.charAt(j) && !visited[r][c + 1]) {  //右
-                        found = route(board, word, visited, r, c + 1, j + 1);
-                        if(found) return found;
+                    if ((column + 1) < board[0].length && board[row][column + 1] == word.charAt(j) && !visited[row][column + 1]) {  //右
+                        route(board, word, visited, row, column + 1, j + 1);
                     }
                 }
             }
@@ -44,7 +39,7 @@ public class RouteSearch {
         return found;
     }
 
-    public boolean route(char[][] board, String word, boolean[][] visited, int r, int c, int j) {
+    public void route(char[][] board, String word, boolean[][] visited, int r, int c, int j) {
         /*
          * @Des: 回溯计算路径
          * @Para:
@@ -59,21 +54,22 @@ public class RouteSearch {
          **/
         visited[r][c] = true;
         if (j == word.length()) {
-            return true;
+            found = true;
+            return;
         }
         if ((r - 1) >= 0 && board[r - 1][c] == word.charAt(j) && !visited[r - 1][c]) {  //上
-            return route(board, word, visited, r - 1, c, j + 1);
+             route(board, word, visited, r - 1, c, j + 1);
         }
         if ((r + 1) < board.length && board[r + 1][c] == word.charAt(j) && !visited[r + 1][c]) { //下
-            return route(board, word, visited, r + 1, c, j + 1);
+             route(board, word, visited, r + 1, c, j + 1);
         }
         if ((c - 1) >= 0 && board[r][c - 1] == word.charAt(j) && !visited[r][c - 1]) {  //左
-            return route(board, word, visited, r, c - 1, j + 1);
+             route(board, word, visited, r, c - 1, j + 1);
         }
         if ((c + 1) < board[0].length && board[r][c + 1] == word.charAt(j) && !visited[r][c + 1]) {  //右
-            return route(board, word, visited, r, c + 1, j + 1);
+             route(board, word, visited, r, c + 1, j + 1);
         }
-        return false;
+        visited[r][c] = false;   //四个方向都不能走，此路不通，清除标记
     }
 }
 
