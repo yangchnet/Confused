@@ -38,14 +38,16 @@ public class Rope {
 //    }
 
     //动态规划法
-
-    int maxM = 1;
     public int cuttingRope(int n) {
         int[] dp = new int[n+1];
-        for(int i = 1; i < (n+1)/2;i++){  //第一段多长
-            //count(n) = max(count(n-1)*1, count(n-2)*2,...)
-            for(int j = i; j < n; j++){  //剩下的怎么分
-                dp[j] = Math.max(dp[j], dp[j-i] * i);
+        dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = 1;
+        for(int i = 3; i < n+1; i++){  //遍历整个dp数组
+            //状态转移方程：dp[i]=max(dp[i], dp[i-j]*j，j*(i-j) )
+            for(int j = 1; j < i; j++){
+                dp[i] = Math.max(dp[i], Math.max(dp[i-j]*j, j*(i-j)));
+                //这里的dp[i]暂存了在计算过程中的最大值，因此需要保留，否则可能会丢失最大值
             }
         }
         return dp[n];

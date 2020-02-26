@@ -8,7 +8,7 @@ public class RopeTest {
     @Test
     public void main(){
         Rope r = new Rope();
-        assert(r.cuttingRope(2)==1);
+        assert(r.cuttingRope(10)==36);
 
         Rope r1 = new Rope();
 //        r1.cuttingRope(10);
