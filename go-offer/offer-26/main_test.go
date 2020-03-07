@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_isSubStructure(t *testing.T) {
 	root1 := &TreeNode{
@@ -27,6 +29,9 @@ func Test_isSubStructure(t *testing.T) {
 		Right: nil,
 	}
 
-	isSubStructure(root1, root2)
+	if !isSubStructure(root1, root2) {
+		t.Error()
+	}
+	//fmt.Printf("%v", isSubStructure(root1, root2))
 
 }
