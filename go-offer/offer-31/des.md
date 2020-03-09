@@ -20,3 +20,14 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 0 <= pushed.length == popped.length <= 1000  
 0 <= pushed[i], popped[i] < 1000  
 pushed 是 popped 的排列。  
+
+# 解题思路
+1. 回溯法  
+穷举出所有可能性，再看有没有给出的出栈序列
+2. 贪心算法
+    * 将第一个数字压栈
+        * 当前popped的第一个数字是否为栈顶
+            * 若popped[1] 既不在栈顶，且pushed为空，则结束，返回false
+            * 不在栈顶，则继续压栈
+            * 在栈顶，出栈，popped长度减1
+        
