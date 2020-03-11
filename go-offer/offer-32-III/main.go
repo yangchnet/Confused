@@ -26,7 +26,7 @@ func (queue *Queue)Clear(){
     //queue = newQueue()   //这个写法为啥不管用
     //解释
     /*
-        因为
+       因为
     */
 
     queue.val = queue.val[0:0]
@@ -87,9 +87,9 @@ func levelOrder(root *TreeNode) [][]int {
             q1.Clear()
         }else{
             for i := 0; i < q2.length(); i++{
-                r = append(r, q2.val[i].Val)
-                if q2.val[i].Left != nil {q1.EnQueue(q2.val[i].Left)}
+                r = append(r, q2.val[q2.length()-1-i].Val)
                 if q2.val[i].Right != nil {q1.EnQueue(q2.val[i].Right)}
+                if q2.val[i].Left != nil {q1.EnQueue(q2.val[i].Left)}
 
             }
             q2.Clear()
