@@ -1,11 +1,9 @@
 # 在Leetcode上的剑指offer刷题记录
-2020/2/17日第一次提交----...   
 
-> 本来是用Java写的，后来想练习一下golang，就改成golang了
 
 题目列表：
 
-**java语言解题**  
+**java语言**  
 * [数组中重复的数字](https://github.com/yangchnet/Leang/tree/master/java-offer/src/offer03)
 * [ 二维数组中的查找](https://github.com/yangchnet/Leang/tree/master/java-offer/src/offer04)
 * [替换空格](https://github.com/yangchnet/Leang/tree/master/java-offer/src/offer05)
@@ -26,7 +24,7 @@
 * [调整数组顺序使奇数位于偶数前面](https://github.com/yangchnet/Leang/tree/master/java-offer/src/offer21)
 * [链表中倒数第k个节点](https://github.com/yangchnet/Leang/tree/master/java-offer/src/offer22)
 
-**golang解题**
+**Golang**
 
 * [反转链表](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-24)
 * [合并两个排序的链表](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-25)
@@ -34,5 +32,6 @@
 * [二叉树的镜像](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-27)
 * [对称的二叉树](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-28)
 * [顺时针打印矩阵](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-29)
+* [复杂链表的复制](https://github.com/yangchnet/Leang/tree/master/go-offer/offer-35)
 
 
