@@ -38,19 +38,19 @@
 ```
     1
    / \
-(l)2(r)2
+(lchild)2(r)2
  / \ / \
 3  4 4  3
 ```
-* l.val == r.val
-* l.left.val == r.right.val
-* l.right.val = r.left.val
+* lchild.val == r.val
+* lchild.left.val == r.right.val
+* lchild.right.val = r.left.val
 
 递归结束条件：  
 当以上任意一条不满足时，返回false  
 当l==r==nil, 返回true
 
 下一次递归：    
-symmetry（l.left, r.right) && symmetry（l.right, r.left) 
+symmetry（lchild.left, r.right) && symmetry（lchild.right, r.left) 
  
 
