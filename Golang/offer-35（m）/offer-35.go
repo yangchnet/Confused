@@ -1,4 +1,4 @@
-package offer_35
+package offer_35_m_
 
 import "fmt"
 
