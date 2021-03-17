@@ -10,8 +10,7 @@ minStack.push(-3);
 minStack.min();   --> 返回 -3.  
 minStack.pop();  
 minStack.top();      --> 返回 0.  
-minStack.min();   --> 返回 -2.  
-  
+minStack.min();   --> 返回 -2.
 提示：  
 各函数的调用总次数不超过 20000 次
 
