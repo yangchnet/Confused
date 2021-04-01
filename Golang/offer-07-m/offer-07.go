@@ -1,13 +1,15 @@
 package offer_07_m_
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
 func BuildTree(preorder []int, inorder []int) *TreeNode {
-	if len(inorder) < 1 {return nil}
+	if len(inorder) < 1 {
+		return nil
+	}
 	rootIndex := indexOf(inorder, preorder[0])
 	root := &TreeNode{
 		Val:   preorder[0],

@@ -1,48 +1,27 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"os/signal"
-	"sync"
-	"syscall"
-	"time"
-)
+import "fmt"
 
 func main() {
-	sigRecv1 := make(chan os.Signal, 1)
-	sigs1 := []os.Signal{syscall.SIGINT, syscall.SIGQUIT}
-	fmt.Printf("Set notification for %s... [sigRecv1]\n", sigs1)
-	signal.Notify(sigRecv1, sigs1...)
+	a := []int{0}
+	a = append(a, 0)
+	b := a[:]
+	fmt.Printf("aDir: %p, bDir: %p\n", &a, &b)
+	a = append(a, 2)
+	fmt.Println("a[2]", a[2])
 
-	sigRecv2 := make(chan os.Signal, 1)
-	sigs2 := []os.Signal{syscall.SIGQUIT}
-	fmt.Printf("Set notification for %s... [sigRecv2]\n", sigs2)
-	signal.Notify(sigRecv2, sigs2...)
+	b = append(b, 1)
+	fmt.Println("b[2]", b[2])
+	fmt.Printf("aDir: %p, bDir: %p\n", &a, &b)
 
-	var wg sync.WaitGroup
-	wg.Add(2)
-	go func() {
-		for sig := range sigRecv1 {
-			fmt.Printf("Received a signal from sigRecv1:%s\n", sig)
-		}
-		fmt.Printf("End. [sigRecv1]\n")
-		wg.Done()
-	}()
+	c := []int{0, 0}
+	c = append(c, 0)
+	d := c[:]
+	fmt.Printf("cDir: %p, dDir: %p\n", &c, &d)
+	c = append(c, 2)
+	fmt.Println("c[3]", c[3])
 
-	go func() {
-		for sig := range sigRecv2 {
-			fmt.Printf("Received a signal from sigRecv2:%s\n", sig)
-		}
-		fmt.Printf("End. [sigRecv2]\n")
-		wg.Done()
-	}()
-
-	fmt.Println("Wait for 2 seconds...")
-	time.Sleep(2 * time.Second)
-	fmt.Printf("Stop notification...")
-	signal.Stop(sigRecv1)
-	//signal.Stop(sigRecv2)
-	close(sigRecv1)
-
+	d = append(d, 1)
+	fmt.Println("d[3]", d[3])
+	fmt.Printf("cDir: %p, dDir: %p\n", &c, &d)
 }
