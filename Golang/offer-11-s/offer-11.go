@@ -1,5 +1,5 @@
 package offer_11_s
 
-func minArray(numbers []int) int {
-
-}
+//func minArray(numbers []int) int {
+//
+//}
